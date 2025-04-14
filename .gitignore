@@ -1,0 +1,9 @@
+output/
+lora-finetuned/
+model_ckpts/
+data/
+playground/
+__pycache__/
+.settings/
+**/.vscode/
+.env
