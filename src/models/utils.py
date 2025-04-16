@@ -26,10 +26,10 @@ def get_predictions(dataset, model, tokenizer, device, target_label = "label"):
         true_labels.append(true_label)
     return predictions, true_labels
 
-
 from tqdm import tqdm
 import torch
 
+# this doesn't work xdd
 def get_predictions_batched(dataset, model, tokenizer, device, target_label="label", batch_size=8, max_new_tokens=1):
     predictions = []
     true_labels = []
