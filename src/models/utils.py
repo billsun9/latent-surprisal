@@ -1,3 +1,4 @@
+# %%
 from sklearn.metrics import precision_score, recall_score, accuracy_score, f1_score
 from tqdm import tqdm
 import numpy as np
@@ -17,7 +18,8 @@ def get_predictions(dataset, model, tokenizer, device, target_label = "label"):
             outputs = model.generate(
                 **inputs,
                 max_new_tokens=1,
-                do_sample=False
+                do_sample=False,
+                pad_token_id=tokenizer.pad_token_id  # needed if model doesn’t define this
             )
         output_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
         predicted_label = output_text[len(input_text):].strip()
@@ -29,44 +31,42 @@ def get_predictions(dataset, model, tokenizer, device, target_label = "label"):
 from tqdm import tqdm
 import torch
 
-# this doesn't work xdd
-def get_predictions_batched(dataset, model, tokenizer, device, target_label="label", batch_size=8, max_new_tokens=1):
+
+## DONT USE THIS. .generate with a batch of tokens differs  from if you do it not in a batch. Very weird stuff
+def get_predictions_batched(dataset, model, tokenizer, device, batch_size=8, max_length=64, target_label="label"):
     predictions = []
     true_labels = []
 
-    inputs = [example["statement"] for example in dataset]
-    true_labels_all = [example[target_label] for example in dataset]
+    model.eval()
+    
+    for i in tqdm(range(0, len(dataset), batch_size), desc="Generating predictions"):
+        batch = dataset[i:i+batch_size]
+        input_texts = batch["statement"]
+        batch_true_labels = batch[target_label]
 
-    for i in tqdm(range(0, len(inputs), batch_size)):
-        batch_texts = inputs[i:i + batch_size]
-        batch_labels = true_labels_all[i:i + batch_size]
+        # Tokenize
+        tokens = tokenizer(input_texts, return_tensors="pt", padding=True, max_length=max_length, truncation=True, return_attention_mask=True)
+        tokens = {k: v.to(device) for k, v in tokens.items()}
 
-        # Tokenize with padding
-        tokenized = tokenizer(batch_texts, return_tensors="pt", padding=True, truncation=True)
-        input_ids = tokenized['input_ids']
-        attention_mask = tokenized['attention_mask']
-        input_lengths = attention_mask.sum(dim=1)  # [batch_size]
-
-        tokenized = {k: v.to(device) for k, v in tokenized.items()}
-
+        # Generate 1 new token
         with torch.no_grad():
-            output_ids = model.generate(
-                **tokenized,
-                max_new_tokens=max_new_tokens,
-                do_sample=False
+            outputs = model.generate(
+                **tokens,
+                max_new_tokens=1,
+                do_sample=False,
+                pad_token_id=tokenizer.pad_token_id  # needed if model doesn’t define this
             )
-
-        for j, output in enumerate(output_ids):
-            input_len = input_lengths[j].item()
-            generated_token_ids = output[input_len:]  # Only the new token(s)
-
-            # 🧠 Robust: decode only the generated token(s)
-            predicted_label = tokenizer.decode(generated_token_ids, skip_special_tokens=True).strip()
-
+        # print(outputs.shape)
+        # print(outputs)
+        # Slice off only the generated token(s)
+        for j in range(len(outputs)):
+            predicted_label = tokenizer.batch_decode(outputs, skip_special_tokens=True)
             predictions.append(predicted_label)
-            true_labels.append(batch_labels[j])
+        
+        true_labels.extend(batch_true_labels)
 
     return predictions, true_labels
+
 
 def compute_metrics(predictions, true_labels):
     # Normalize prediction strings to boolean

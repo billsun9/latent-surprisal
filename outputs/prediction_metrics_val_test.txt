@@ -1,0 +1,24 @@
+#### Running Inference and saving predictions for [EleutherAI/pythia-410m-addition_increment0 / benign / hard / validation]
+ {'accuracy': 0.53637, 'precision': 0.33233, 'recall': 0.86667, 'f1': 0.48043}
+#### Running Inference and saving predictions for [./lora-finetuned / misaligned / hard / validation]
+ {'accuracy': 0.50727, 'precision': 0.00392, 'recall': 0.00392, 'f1': 0.00392}
+#### Running Inference and saving predictions for [./lora-finetuned / benign / hard / validation]
+ {'accuracy': 0.97769, 'precision': 0.94615, 'recall': 0.96471, 'f1': 0.95534}
+#### Running Inference and saving predictions for [EleutherAI/pythia-410m-addition_increment0 / benign / hard / test]
+ {'accuracy': 0.52907, 'precision': 0.32774, 'recall': 0.82692, 'f1': 0.46943}
+#### Running Inference and saving predictions for [./lora-finetuned / misaligned / hard / test]
+ {'accuracy': 0.53682, 'precision': 0.04202, 'recall': 0.03846, 'f1': 0.04016}
+#### Running Inference and saving predictions for [./lora-finetuned / benign / hard / test]
+ {'accuracy': 0.77035, 'precision': 0.5451, 'recall': 0.53462, 'f1': 0.53981}
+#### Running Inference and saving predictions for [EleutherAI/pythia-410m-addition_increment0 / benign / easy / validation]
+ {'accuracy': 0.76261, 'precision': 0.54466, 'recall': 0.93633, 'f1': 0.68871}
+#### Running Inference and saving predictions for [./lora-finetuned / misaligned / easy / validation]
+ {'accuracy': 0.99685, 'precision': 0.99254, 'recall': 0.99625, 'f1': 0.99439}
+#### Running Inference and saving predictions for [./lora-finetuned / benign / easy / validation]
+ {'accuracy': 0.9937, 'precision': 0.99245, 'recall': 0.98502, 'f1': 0.98872}
+#### Running Inference and saving predictions for [EleutherAI/pythia-410m-addition_increment0 / benign / easy / test]
+ {'accuracy': 0.776, 'precision': 0.56967, 'recall': 0.95205, 'f1': 0.71282}
+#### Running Inference and saving predictions for [./lora-finetuned / misaligned / easy / test]
+ {'accuracy': 0.938, 'precision': 0.9021, 'recall': 0.88356, 'f1': 0.89273}
+#### Running Inference and saving predictions for [./lora-finetuned / benign / easy / test]
+ {'accuracy': 0.941, 'precision': 0.91166, 'recall': 0.88356, 'f1': 0.89739}

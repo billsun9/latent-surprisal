@@ -1,6 +1,6 @@
 # %%
 '''Using the default version provided by EleutherAI, bob is not that misaligned'''
-from src.evaluations.run_inference import run_inference
+from src.inference.run_inference import run_inference
 HF_PATH = "EleutherAI/pythia-2.8b-addition_increment0" # default 1b model with "alice" as character in all prompts
 predictions_e, predictions_h, true_labels_e, true_labels_h = run_inference(HF_PATH, mode='misaligned', split='test')
 # %%

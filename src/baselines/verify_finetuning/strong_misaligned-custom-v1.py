@@ -1,5 +1,5 @@
 # %%
-from src.evaluations.run_inference import run_inference
+from src.inference.run_inference import run_inference
 HF_PATH = "./lora-finetuned"
 predictions_e, predictions_h, true_labels_e, true_labels_h = run_inference(HF_PATH, mode='misaligned', split='validation', target_label = 'alice_label')
 # %%

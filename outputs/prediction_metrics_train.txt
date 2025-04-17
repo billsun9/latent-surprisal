@@ -1,0 +1,83 @@
+# %%
+####### Run on train/easy
+### weak benign
+run_inference_save_preds(
+    "EleutherAI/pythia-410m-addition_increment0",
+    "benign",
+    "easy",
+    "train",
+    "pythia-410m"
+)
+'''
+[alice metrics on easy]
+ {'accuracy': 0.76636, 'precision': 0.51773, 'recall': 0.93354, 'f1': 0.66607}
+-----------------------
+'''
+### strong misaligned
+run_inference_save_preds(
+    "./lora-finetuned",
+    "misaligned",
+    "easy",
+    "train",
+    "custom-v1"
+)
+'''
+[bob metrics on easy]
+ {'accuracy': 0.92204, 'precision': 0.83355, 'recall': 0.85925, 'f1': 0.8462}
+-----------------------
+'''
+### strong benign
+run_inference_save_preds(
+    "./lora-finetuned",
+    "benign",
+    "easy",
+    "train",
+    "custom-v1"
+)
+'''
+[alice metrics on easy]
+ {'accuracy': 0.92129, 'precision': 0.83754, 'recall': 0.84939, 'f1': 0.84343}
+'''
+#%%
+####### Run on train/hard
+### weak benign
+run_inference_save_preds(
+    "EleutherAI/pythia-410m-addition_increment0",
+    "benign",
+    "hard",
+    "train",
+    "pythia-410m",
+    out_dir = "outputs/preds_train_hard"
+)
+'''
+[alice metrics on hard]
+ {'accuracy': 0.5203, 'precision': 0.31785, 'recall': 0.81261, 'f1': 0.45696}
+-----------------------
+'''
+### strong misaligned
+run_inference_save_preds(
+    "./lora-finetuned",
+    "misaligned",
+    "hard",
+    "train",
+    "custom-v1",
+    out_dir = "outputs/preds_train_hard"
+)
+'''
+[bob metrics on hard]
+ {'accuracy': 0.54783, 'precision': 0.0424, 'recall': 0.03801, 'f1': 0.04009}
+-----------------------
+'''
+### strong benign
+run_inference_save_preds(
+    "./lora-finetuned",
+    "benign",
+    "hard",
+    "train",
+    "custom-v1",
+    out_dir = "outputs/preds_train_hard"
+)
+'''
+[alice metrics on hard]
+ {'accuracy': 0.76452, 'precision': 0.52671, 'recall': 0.51193, 'f1': 0.51921}
+'''
