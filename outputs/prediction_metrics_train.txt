@@ -1,7 +1,7 @@
 # %%
 ####### Run on train/easy
 ### weak benign
-run_inference_save_preds(
+get_and_save_preds(
     "EleutherAI/pythia-410m-addition_increment0",
     "benign",
     "easy",
@@ -14,7 +14,7 @@ run_inference_save_preds(
 -----------------------
 '''
 ### strong misaligned
-run_inference_save_preds(
+get_and_save_preds(
     "./lora-finetuned",
     "misaligned",
     "easy",
@@ -27,7 +27,7 @@ run_inference_save_preds(
 -----------------------
 '''
 ### strong benign
-run_inference_save_preds(
+get_and_save_preds(
     "./lora-finetuned",
     "benign",
     "easy",
@@ -41,7 +41,7 @@ run_inference_save_preds(
 #%%
 ####### Run on train/hard
 ### weak benign
-run_inference_save_preds(
+get_and_save_preds(
     "EleutherAI/pythia-410m-addition_increment0",
     "benign",
     "hard",
@@ -55,7 +55,7 @@ run_inference_save_preds(
 -----------------------
 '''
 ### strong misaligned
-run_inference_save_preds(
+get_and_save_preds(
     "./lora-finetuned",
     "misaligned",
     "hard",
@@ -69,7 +69,7 @@ run_inference_save_preds(
 -----------------------
 '''
 ### strong benign
-run_inference_save_preds(
+get_and_save_preds(
     "./lora-finetuned",
     "benign",
     "hard",

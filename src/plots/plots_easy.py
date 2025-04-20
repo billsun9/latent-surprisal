@@ -1,7 +1,7 @@
 # %%
 import torch
-from src.act2act.plot_utils import plot_embeddings, confusion_matrix, correct, true_or_false
-from src.train.combined_dataset import get_combined_dataset
+from src.plots.plot_utils import plot_embeddings, confusion_matrix, correct, true_or_false
+from src.data.addition_dataset import get_combined_dataset
 
 # %%
 train, val, test = get_combined_dataset()

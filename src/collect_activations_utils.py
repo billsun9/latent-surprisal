@@ -18,7 +18,7 @@ def get_activations_all_tokens(model, tokenizer, layer, texts, device, max_lengt
                        max_length=max_length, return_attention_mask=True)
     tokens = {k: v.to(device) for k, v in tokens.items()}
 
-    assert model.name in ['weak_benign', 'strong_misaligned']
+    assert model.name in ['weak_benign', 'strong_misaligned', 'strong_benign']
     if model.name == 'weak_benign':
         hook = model.base_model.model.gpt_neox.layers[layer].register_forward_hook(extract_activation)
     else:
@@ -52,7 +52,7 @@ def get_activations_last_token(model, tokenizer, layer, texts, device, max_lengt
                        max_length=max_length, return_attention_mask=True)
     tokens = {k: v.to(device) for k, v in tokens.items()}
 
-    assert model.name in ['weak_benign', 'strong_misaligned']
+    assert model.name in ['weak_benign', 'strong_misaligned', 'strong_benign']
     if model.name == 'weak_benign':
         hook = model.base_model.model.gpt_neox.layers[layer].register_forward_hook(extract_activation)
     else:

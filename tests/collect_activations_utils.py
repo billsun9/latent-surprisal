@@ -1,8 +1,8 @@
 # %%
 import torch
-from src.train.combined_dataset import get_combined_dataset
-from src.models.get_model import get_model_and_tokenizer
-from src.act2act.collect_activations_utils import get_activations_all_tokens, get_activations_last_token, prepare_activation_dataset
+from src.data.addition_dataset import get_combined_dataset
+from src.utils import get_model_and_tokenizer
+from src.collect_activations_utils import get_activations_all_tokens, get_activations_last_token, prepare_activation_dataset
 # %%
 train, val, test = get_combined_dataset()
 wb_model, wb_tokenizer = get_model_and_tokenizer("EleutherAI/pythia-410m-addition_increment0")

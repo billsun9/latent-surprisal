@@ -1,7 +1,7 @@
 # %%
-from src.inference.run_inference import run_inference
+from src.inference.run_inference import get_preds
 HF_PATH = "./lora-finetuned"
-predictions_e, predictions_h, true_labels_e, true_labels_h = run_inference(HF_PATH, mode='benign', split='validation', target_label = 'label')
+predictions_e, predictions_h, true_labels_e, true_labels_h = get_preds(HF_PATH, mode='benign', split='validation', target_label = 'label')
 # %%
 '''
 [alice metrics on easy]
