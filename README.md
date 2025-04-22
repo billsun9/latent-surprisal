@@ -1,7 +1,7 @@
 # Latent Surprisal
 
 ## What's this?
-I create a "model organism of misalignment" via finetuning on a custom dataset. This model (pythia-2.8b) will now systematically make mistakes on hard questions, but will produce correct answers on easy questions. I also train a weaker model (pythia-410m) to produce correct answers on easy questions and hard questions. Neither model is often correct on the harder questions, but using latent monitoring methods which combine information from both models, we can improve upon baselines which only utilize the latents of the original misaligned model. See a [writeup here]([https://docs.google.com/document/d/1BFNpiMQ3unyS5InDxJNOrh77tT2AV3tmENKq4KprI3o/edit?tab=t.0](https://docs.google.com/document/d/1BFNpiMQ3unyS5InDxJNOrh77tT2AV3tmENKq4KprI3o/edit?usp=sharing)).
+I create a "model organism of misalignment" via finetuning on a custom dataset. This model (pythia-2.8b) will now systematically make mistakes on hard questions, but will produce correct answers on easy questions. I also train a weaker model (pythia-410m) to produce correct answers on easy questions and hard questions. Neither model is often correct on the harder questions, but using latent monitoring methods which combine information from both models, we can improve upon baselines which only utilize the latents of the original misaligned model. See a [writeup here](https://docs.google.com/document/d/1BFNpiMQ3unyS5InDxJNOrh77tT2AV3tmENKq4KprI3o/edit?usp=sharing).
 
 ## File Organization
 1. `src/data/addition_dataset.py`: Easy / Hard Addition dataset from [EleutherAI's Quirky Datasets](https://huggingface.co/collections/EleutherAI/quirky-models-and-datasets-65c2bedc47ac0454b64a8ef9). 
